@@ -1,0 +1,19 @@
+name: "Testing env secrets vars workflow"
+
+on: workflow_dispatch
+env:
+  IMAGE: "dummy-image"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v6
+      - name: Docker Login
+        run: echo docker login --username ${{vars.DOCKER_USERNAME}} --password ${{secrets.DOCKER_PASSWORD}}
+
+      - name: Docker build
+        run: echo docker build . -t ${{ vars.DOCKER_USERNAME }}/${{ env.IMAGE }}
+      - name: Docker deploy
+        run: echo docker push ${{ vars.DOCKER_USERNAME }}/${{ env.IMAGE }}
