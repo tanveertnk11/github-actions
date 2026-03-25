@@ -1,4 +1,4 @@
-name: "Testing env secrets vars workflow"
+name: "Workflow dispatch test workflow"
 
 on: workflow_dispatch
 env:
