@@ -26,3 +26,5 @@ jobs:
     steps:
       - name: Docker deploy
         run: echo docker push ${{ vars.DOCKER_USERNAME }}/${{ env.IMAGE }}
+      - name: Sleep
+        run: sleep 60
