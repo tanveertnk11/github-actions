@@ -17,5 +17,7 @@ jobs:
       #   run: ls
       # - name: "Show readme"
       #   run: cat Readme.md
+      - name: Install cowsay
+        run: sudo apt-get install cowsay
       - name: "Generate ASCII artwork"
         run: cowsay -f dragon "I am a dragon" > dragon.txt
