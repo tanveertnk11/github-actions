@@ -8,11 +8,7 @@ jobs:
     steps:
       - name: "Checkout"
         uses: actions/checkout@v6
-      - name: "List and read files"
-        run: |
-          echo "Initial github action"
-          ls -ltra
-          cat Readme.md
+
       # - name: "List files"
       #   run: ls
       # - name: "Show readme"
@@ -21,3 +17,26 @@ jobs:
         run: sudo apt-get install cowsay
       - name: "Generate ASCII artwork"
         run: cowsay -f dragon "I am a dragon" > dragon.txt
+      - name: "List and read files"
+        run: |
+          echo "Initial github action"
+          ls -ltra
+          cat Readme.md
+
+  list_file_job:
+    runs-on: ubuntu-latest
+    needs: initial_job
+    steps:
+      - name: sleep
+        run: sleep 10
+      - name: List the files
+        run: ls -ltra
+
+  read_file_job:
+    runs-on: ubuntu-latest
+    needs: list_file_job
+    steps:
+      - name: sleep
+        run: sleep 15
+      - name: read the file
+        run: cat dragon.txt
