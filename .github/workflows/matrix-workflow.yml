@@ -1,4 +1,4 @@
-name: "Workflow dispatch test workflow"
+name: "MAtrix test workflow"
 
 on: workflow_dispatch
 
