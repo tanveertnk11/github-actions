@@ -1,0 +1,16 @@
+name: "Workflow dispatch test workflow"
+
+on: workflow_dispatch
+
+jobs:
+  docker_run:
+    strategy:
+      matrix:
+        os: ["ubuntu-latest", "ubuntu-20.04", "windows-latest"]
+        images: ["hello-world", "alpine"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: "Docker info"
+        run: docker info
+      - name: Docker Run image on ${{matrix.os}}
+        run: docker run ${{ matrix.images }}
