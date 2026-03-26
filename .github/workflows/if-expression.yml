@@ -1,4 +1,4 @@
-name: "Testing env secrets vars workflow"
+name: "Testing if expressions"
 
 on: workflow_dispatch
 env:
