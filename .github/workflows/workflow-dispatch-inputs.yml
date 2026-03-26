@@ -1,0 +1,40 @@
+name: Workflow dispatch inputs
+on:
+  workflow_dispatch:
+    inputs:
+      sleep:
+        type: choice
+        default: "60"
+        options:
+          - "60"
+          - "100"
+          - "6000"
+        description: Sleep time for the job
+      environment:
+        type: environment
+        default: main
+        required: true
+        description: The environment which should be used
+      run-tests:
+        type: boolean
+        required: true
+        description: whether the tests should run
+      extra-input:
+        type: number
+        default: 1
+        required: false
+        description: Just an extra input for testing
+
+jobs:
+  workflow-dispatch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: List down the inputs
+        run: |
+          echo Sleep timer: ${{inputs.sleep}}
+          echo Environment: ${{inputs.environment}}
+          echo extra input: ${{inputs.extra-input}}
+          echo Run Test: ${{inputs.run-tests}}
+      - name: Run Test(if condition)
+        if: inputs.run-tests == true
+        run: echo Running Tests
