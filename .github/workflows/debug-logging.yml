@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: assign env variable
         run: echo USERNAME=$USER_1 >> $GITHUB_ENV
       - name: Printing username
