@@ -1,0 +1,22 @@
+name: Workflow filters
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - "main"
+      - "!feature*" # This will not trigger the workflow for feature branch push
+  pull_request:
+    types:
+      - opened
+      - closed
+    branches:
+      - "main"
+    paths-ignore:
+      - "Readme.md"
+
+jobs:
+  hello_world:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Workflow Action message
+        run: echo Testing github workflow filters. This workflow was triggered by ${{github.event_name}}
