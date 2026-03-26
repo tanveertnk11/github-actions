@@ -1,0 +1,23 @@
+name: Testing Debug Logging
+
+on:
+  push:
+  workflow_dispatch:
+env:
+  USER_1: "foo-bar"
+  USER_2: "bar-foo"
+jobs:
+  debug-log:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v4
+      - name: assign env variable
+        run: echo USERNAME=$USER_1 >> $GITHUB_ENV
+      - name: Printing username
+        run: |
+          echo $USERNAME
+          echo $GITHUB_ENV
+          exit 1
+      - name: Running this step after failing previous step
+        run: echo $GITHUB_ENV
